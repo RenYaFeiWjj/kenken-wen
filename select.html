@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html style="font-size: 84.8px;">
+<head>
+    <title>嘤嘤嘤</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="content-type" content="no-cache, must-revalidate">
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Cache-Control" content="no-transform,no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-app-status-bar-style" content="white">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="referrer" content="never">
+    <script src="http://yogreek.coincsd.com//Assets/js/jquery-2.0.3.min.js">
+
+    </script>
+    <style id="__WXWORK_INNER_SCROLLBAR_CSS">::-webkit-scrollbar {
+        width: 12px !important;
+        height: 12px !important;
+    }
+
+    ::-webkit-scrollbar-track:vertical {
+    }
+
+    ::-webkit-scrollbar-thumb:vertical {
+        background-color: rgba(136, 141, 152, 0.5) !important;
+        border-radius: 10px !important;
+        background-clip: content-box !important;
+        border: 2px solid transparent !important;
+    }
+
+    ::-webkit-scrollbar-track:horizontal {
+    }
+
+    ::-webkit-scrollbar-thumb:horizontal {
+        background-color: rgba(136, 141, 152, 0.5) !important;
+        border-radius: 10px !important;
+        background-clip: content-box !important;
+        border: 2px solid transparent !important;
+    }
+
+    ::-webkit-resizer {
+        display: none !important;
+    }</style>
+    <link href="http://yogreek.coincsd.com/MyStyle/css/Train/common.css?v=2745" rel="stylesheet">
+    <link href="http://yogreek.coincsd.com/MyStyle/css/Base/Btn.css" rel="stylesheet">
+    <link href="http://yogreek.coincsd.com/MyStyle/css/Base/tipbase.css" rel="stylesheet">
+    <link href="http://yogreek.coincsd.com/MyStyle/css/Train/answer.css?v=2745" rel="stylesheet">
+
+</head>
+<body>
+<div class="div_boby">
+    <div class="baseWidth">
+        <div class="bgdiv" style="background: none;">
+            <span></span>
+        </div>
+        <div class="greenbgdiv">
+            <div class="answerdiv" style="font-size: 0.18rem;">
+                <div id="question" style="margin: 0px 0.25rem;"><p><b style="font-size: 0.28rem;line-height: 0.38rem;">小菜鸟，你是否有很多问号</b></p>
+                    <div class="que">
+                        <input class="input" style="width: 50%;" type="text" placeholder="小菜鸟，复制进来 ">
+                        <div class="btnp col2 biii title" style="    position: relative;
+    width: 1.18rem;
+    height: 0.6rem;
+    display: block;
+    font-size: 10px;
+    line-height: 0.6rem;
+    margin: 0;
+    left: 60%;
+    top: -39px;">
+                            <span style="line-height: 0.5rem;font-size:0.2rem;background-size: 0.63rem auto;letter-spacing:0;">我giao</span>
+                        </div>
+                        <dl class="dl">
+                        </dl>
+                        <p class="nextsubmit"><label class="btnp col1"><span>你学废了吗</span></label></p></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $('.biii').on('click', function () {
+        $('.dl').html('');
+        var input = $('.input').val();
+        $('.input').val('');
+        if ($.trim(input) != '') {
+            $.ajax({
+                url: 'http://api.itenscen.cn/v2/store/bb',
+                type: "get",
+                data: {
+                    'title': input
+                },
+                success: function (res) {
+                    res = JSON.parse(res);
+                    console.log(res);
+                    if (res.code == 1) {
+                        var data = res.data;
+
+                        for (let i = 0; i < data.length; i++) {
+                            var html = '';
+                            var title = '<label style="line-height: 0.34rem;">' + data[i].title + '</label>';
+                            for (let j = 0; j < data[i].value.length; j++) {
+                                if (data[i].value[j].correctness == 1) {
+                                    html += '<dd style="background: #5fd9ac;color:#fff;" class="answer" data-qid="357" data-qaid="921" data-qatype="1">' + data[i].value[j].answer + '</dd>\n';
+                                }
+                            }
+                            $('.dl').append(title);
+                            $('.dl').append(html);
+                        }
+                    } else {
+                        alert('别急，有我');
+                    }
+                }
+            });
+        } else {
+            alert('先填关键词');
+        }
+
+    });
+
+
+</script>
+</html>
